@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxStay Hotels | Premium Accommodations</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Top Navigation Bar -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo">
+                <i class="fas fa-hotel"></i>
+                LuxStay Hotels
+            </div>
+            <div class="hamburger" id="hamburger">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav class="nav-container" id="navContainer">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#" class="active" data-section="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" data-section="hotels"><i class="fas fa-bed"></i> Hotels</a></li>
+                    <li><a href="#" data-section="map"><i class="fas fa-map-marked-alt"></i> Map</a></li>
+                    <li><a href="#" data-section="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="#" data-section="payment"><i class="fas fa-credit-card"></i> Payment</a></li>
+                    <li class="user-menu">
+                        <a href="#" id="userName"><i class="fas fa-user"></i> Guest</a>
+                        <div class="user-dropdown">
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+        <!-- Home Section -->
+        <section id="home" class="content-section active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Discover Luxury Stays Worldwide</h1>
+                    <p>Experience unparalleled comfort and service at our premium hotel collection</p>
+                    <a href="#" class="btn-primary" data-section="hotels">Explore Hotels</a>
+                </div>
+            </div>
+            
+            <div class="container">
+                <h2 class="section-title">Featured Destinations</h2>
+                <div class="featured-grid">
+                    <div class="featured-card">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Santorini">
+                        <div class="featured-overlay">
+                            <h3>Santorini, Greece</h3>
+                            <p>5 Luxury Hotels</p>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Paris">
+                        <div class="featured-overlay">
+                            <h3>Paris, France</h3>
+                            <p>8 Boutique Hotels</p>
+                        </div>
+                    </div>
+                    <div class="featured-card">
+                        <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="New York">
+                        <div class="featured-overlay">
+                            <h3>New York, USA</h3>
+                            <p>12 Urban Hotels</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hotels Section -->
+        <section id="hotels" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Our Hotel Collection</h2>
+                
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <button class="filter-btn active" data-filter="all">All Hotels</button>
+                    <button class="filter-btn" data-filter="luxury">Luxury</button>
+                    <button class="filter-btn" data-filter="budget">Budget</button>
+                    <button class="filter-btn" data-filter="boutique">Boutique</button>
+                    <button class="filter-btn" data-filter="resort">Resort</button>
+                </div>
+
+                <!-- Hotel Grid -->
+                <div class="hotel-grid" id="hotelGrid">
+                    <!-- Hotels will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Hotel Details Modal -->
+        <div class="modal" id="hotelModal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <div class="modal-body" id="modalBody">
+                    <!-- Hotel details will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Map Section -->
+        <section id="map" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Hotel Locations</h2>
+                <div class="map-container glass-card">
+                    <div id="hotelMap"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="content-section">
+            <div class="container">
+                <h2 class="section-title">About LuxStay Hotels</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Our Story</h3>
+                        <p>Founded in 2010, LuxStay Hotels began with a simple vision: to create extraordinary hotel experiences that blend luxury with authentic local culture. What started as a single boutique hotel in Paris has grown into a global collection of 50+ unique properties across 20 countries.</p>
+                        
+                        <h3>Our Mission</h3>
+                        <p>We believe travel should be transformative. Our mission is to provide not just accommodation, but memorable experiences that connect guests with the essence of each destination. Every LuxStay property is carefully curated to reflect its location while maintaining our signature standards of comfort and service.</p>
+                        
+                        <h3>Awards & Recognition</h3>
+                        <ul>
+                            <li>World Travel Awards - World's Leading Hotel Brand 2022</li>
+                            <li>Forbes Travel Guide - 15 Five-Star Properties</li>
+                            <li>Conde Nast Traveler - Readers' Choice Awards 2023</li>
+                            <li>TripAdvisor Travelers' Choice - Top 10 Luxury Hotels</li>
+                        </ul>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <h4>50+</h4>
+                            <p>Hotels Worldwide</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>20</h4>
+                            <p>Countries</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>98%</h4>
+                            <p>Guest Satisfaction</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>24/7</h4>
+                            <p>Concierge Service</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment Section -->
+        <section id="payment" class="content-section">
+            <div class="container">
+                <h2 class="section-title">Secure Payment</h2>
+                <div class="payment-container">
+                    <div class="booking-summary glass-card">
+                        <h3>Booking Summary</h3>
+                        <div class="summary-item">
+                            <span>Selected Hotel:</span>
+                            <span id="selectedHotel">Grand Plaza Hotel</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Check-in:</span>
+                            <span id="checkinDate">--/--/----</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Check-out:</span>
+                            <span id="checkoutDate">--/--/----</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Guests:</span>
+                            <span id="guestCount">2 Adults</span>
+                        </div>
+                        <div class="summary-item total">
+                            <span>Total Amount:</span>
+                            <span id="totalAmount">$0.00</span>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-form glass-card">
+                        <h3>Payment Details</h3>
+                        <form id="paymentForm">
+                            <div class="form-group">
+                                <label for="cardName">Name on Card</label>
+                                <input type="text" id="cardName" placeholder="John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number</label>
+                                <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiryDate">Expiry Date</label>
+                                    <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" maxlength="3" required>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn-primary btn-pay">Complete Payment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>LuxStay Hotels</h3>
+                    <p>Premium accommodations with unforgettable experiences.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-section="home">Home</a></li>
+                        <li><a href="#" data-section="hotels">Hotels</a></li>
+                        <li><a href="#" data-section="map">Locations</a></li>
+                        <li><a href="#" data-section="about">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Luxury Avenue, Paris, France</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@luxstayhotels.com</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 LuxStay Hotels. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
